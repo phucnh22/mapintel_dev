@@ -1,0 +1,16 @@
+# Generalistic
+numpy==1.21.0
+pandas
+
+# ML engine
+scikit-learn==0.24.1
+matplotlib
+umap-learn
+
+# Visualization
+streamlit==0.82.0
+plotly
+colorcet
+
+# Read different file formats
+tika

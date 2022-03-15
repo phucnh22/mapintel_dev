@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: odfe-data1
+  labels:
+    io.kompose.service: odfe-data1
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/odfe-data1"
+
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: api-cpu-data
+  labels:
+    io.kompose.service: api-cpu-data
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/artifacts"

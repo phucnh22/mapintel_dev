@@ -1,0 +1,12 @@
+farm-haystack==0.8.0
+pymilvus==1.1.2
+sentence-transformers==2.0.0
+newsapi-python==0.2.6
+beautifulsoup4==4.9.1
+langdetect==1.0.8
+python-dotenv==0.14.0
+top2vec==1.0.26
+bertopic==0.8.1
+umap-learn==0.5.2
+numpy==1.21.0
+tqdm

@@ -1,0 +1,71 @@
+version: '0.8'
+
+components:    # define all the building-blocks for Pipeline
+  - name: DocumentStore
+    type: OpenDistroElasticsearchDocumentStore2
+    params:
+      host: odfe-node1
+      port: 9200
+      username: admin    # TODO: the access needs to be more secure before deployment
+      password: admin
+      scheme: https
+      verify_certs: False
+      similarity: cosine
+      return_embedding: True
+  - name: Retriever    # api/controller/feedback.py has this name hard coded. DO NOT CHANGE!
+    type: TopicRetriever
+    params:
+      document_store: DocumentStore    # params can reference other components defined in the YAML
+      embedding_model: sentence-transformers/msmarco-distilbert-base-v4    # https://www.sbert.net/examples/applications/semantic-search/README.html
+      model_format: bertopic
+      top_k: 100
+  - name: Reader    # custom-name for the component; helpful for visualization & debugging
+    type: CrossEncoderReRanker    # Haystack Class name for the component
+    params:
+      cross_encoder: cross-encoder/ms-marco-MiniLM-L-6-v2
+      top_k: 10
+  - name: TextFileConverter
+    type: TextConverter
+  - name: PDFFileConverter
+    type: PDFToTextConverter
+  - name: Preprocessor
+    type: PreProcessor
+    params:
+      split_by: word
+      split_length: 100    # the median of the number of words per newsapi document is around 80
+  - name: FileTypeClassifier
+    type: FileTypeClassifier
+
+
+pipelines:
+  - name: query    # pipeline to be called when performing a free-text query
+    type: Query
+    nodes:
+      - name: Retriever
+        inputs: [Query]
+      - name: Reader
+        inputs: [Retriever]
+
+  - name: indexing_file_uploads    # pipeline to be called when uploading a file from disk
+    type: Indexing
+    nodes:
+      - name: FileTypeClassifier
+        inputs: [File]
+      - name: TextFileConverter
+        inputs: [FileTypeClassifier.output_1]
+      - name: PDFFileConverter
+        inputs: [FileTypeClassifier.output_2]
+      - name: Preprocessor
+        inputs: [PDFFileConverter, TextFileConverter]
+      - name: Retriever
+        inputs: [Preprocessor]
+      - name: DocumentStore
+        inputs: [Retriever]
+
+  - name: indexing_news_uploads    # pipeline to be called to get document from NewsAPI to the document store
+    type: Indexing
+    nodes:
+      - name: Retriever
+        inputs: [File]
+      - name: DocumentStore
+        inputs: [Retriever]

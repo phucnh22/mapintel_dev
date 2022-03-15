@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+    ################################## CPU services - alternative ##################################
+    api-cpu:
+        build:
+            context: .
+            dockerfile: api/DockerfileCPU
+        ports:
+            - 8000:8000
+        restart: always  # The policy always restarts the container until its removal
+        depends_on:
+            - odfe-node1
+        networks:
+            - odfe-net
+        volumes:
+            - ./artifacts:/home/user/artifacts
+    ################################## GPU/CPU Independent services ##################################
+    odfe-node1:
+        image: amazon/opendistro-for-elasticsearch:1.13.2
+        container_name: odfe-node1
+        environment:
+            - node.name=odfe-node1
+            - discovery.type=single-node
+        volumes:
+            - odfe-data1:/usr/share/elasticsearch/data
+        ports:
+            - 9200:9200
+        networks:
+            - odfe-net
+
+volumes: # Creating volumes by specifying them under the top-level volumes section
+    odfe-data1: # empty entries will be created according to the "platform's default configuration"
+
+networks: # Creating networks by specifying them under the top-level networks section
+    odfe-net:

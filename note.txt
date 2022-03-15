@@ -1,0 +1,9 @@
+pv-odfe.yaml,pvclaim.yaml,odfe-node1.yaml,api.yaml
+
+- To forward port for testing purposes:
+kubectl port-forward api-cpu-775445f8b6-w9zrq 8000:8000
+
+-copy file
+kubectl cp /artifacts/. my-pod:/data/artifacts
+---
+minikube mount "C:\Users\Admin\Documents\1.myprojects\mapintel_test\artifacts":/data/artifacts

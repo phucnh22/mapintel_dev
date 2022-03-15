@@ -1,0 +1,1 @@
+api-cpu-deployment.yaml,api-cpu-service.yaml,api-cpu-claim0-persistentvolumeclaim.yaml,odfe-node1-deployment.yaml,odfe-node1-service.yaml,odfe-net-networkpolicy.yaml,odfe-data1-persistentvolumeclaim.yaml

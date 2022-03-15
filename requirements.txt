@@ -1,0 +1,31 @@
+# Python dependencies across all components of the project
+beautifulsoup4==4.9.1
+bokeh==2.2.3
+farm-haystack==0.8.0
+gensim==3.8.0
+jupyterlab>=2.2.10
+newsapi-python==0.2.6
+python-dotenv==0.14.0
+pdf2image==1.13.1
+scikit-learn==0.23.2
+scikit-image==0.18.1
+seaborn==0.11.0
+networkx==2.5
+wordfreq==2.3.2
+sentence-transformers==1.1.1
+tesserocr==2.5.1
+streamlit==0.82.0
+streamlit-bokeh-events==0.1.2
+langdetect==1.0.8
+umap-learn==0.5.1
+ipywidgets
+matplotlib
+numpy
+pandas
+nltk
+hdbscan
+top2vec
+tika
+tqdm
+-e ./experiments
+-e git+https://github.com/DavidSilva98/SOMPY.git#egg=SOMPY --src ./experiments
