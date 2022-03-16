@@ -9,3 +9,7 @@ kubectl cp /artifacts/. my-pod:/data/artifacts
 minikube mount "C:\Users\Admin\Documents\1.myprojects\mapintel_test\artifacts":/data/artifacts
 ---
 gcloud container clusters get-credentials mapintel-cluster-autopilot --region=europe-west1
+
+----
+New error:
+ElasticsearchException[failed to bind service] kubernetes

@@ -27,6 +27,7 @@ spec:
               value: odfe-node1
           image: amazon/opendistro-for-elasticsearch:1.13.2
           name: odfe-node1
+          command: ["sudo chown -R 1000:1000 /usr/share/elasticsearch/data"]
           ports:
             - containerPort: 9200
           resources: {}
