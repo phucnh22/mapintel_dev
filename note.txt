@@ -18,6 +18,10 @@ gcloud config set compute/region europe-west1
 gcloud container clusters get-credentials mapintel-cluster-autopilot --region=europe-west1
 
 kubectl expose deployment api-cpu --type=LoadBalancer --port 8000 --target-port 8080
+
+kubectl cp mongodb_cleaned_docs.json api-cpu-7489bb7d79-278zz:/home/user/artifacts/backups/
+
+kubectl exec -it api-cpu-7489bb7d79-278zz -c api-cpu -- /bin/bash
 ----
 New error:
 ElasticsearchException[failed to bind service] kubernetes

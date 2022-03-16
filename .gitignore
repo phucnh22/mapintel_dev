@@ -1,5 +1,4 @@
 # Custom
-artifacts/
 venv/
 
 kompose-windows-amd64.exe

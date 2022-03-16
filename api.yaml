@@ -46,11 +46,10 @@ metadata:
     io.kompose.service: api-cpu
   name: api-cpu
 spec:
+  type: LoadBalancer
   ports:
-    - name: "8000"
+    - protocol: TCP
       port: 8000
       targetPort: 8000
   selector:
     io.kompose.service: api-cpu
-status:
-  loadBalancer: {}
