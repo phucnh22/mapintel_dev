@@ -21,7 +21,7 @@ gcloud auth configure-docker
 gcloud config set project mapintel-phuc
 gcloud config set compute/region europe-west1
 # build image
-docker build -f DockerfileCPU-t gcr.io/mapintel-phuc/insurance-app:v1 .
+docker build -f DockerfileCPU -t gcr.io/mapintel-phuc/mapintel-api .
 # get credentials for GKE cluster
 gcloud container clusters get-credentials mapintel-cluster-autopilot --region=europe-west1
 # access to pod container #!/usr/bin/env bash
