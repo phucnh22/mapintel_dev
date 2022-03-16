@@ -15,10 +15,13 @@ To run in google gcloud
 ```bash
 # clone repo
 git clone https://github.com/phucnh22/mapintel_dev.git
+
 # config gcloud to specific zone and project
 gcloud auth configure-docker
 gcloud config set project mapintel-phuc
 gcloud config set compute/region europe-west1
+# build image
+docker build -f DockerfileCPU-t gcr.io/mapintel-phuc/insurance-app:v1 .
 # get credentials for GKE cluster
 gcloud container clusters get-credentials mapintel-cluster-autopilot --region=europe-west1
 # access to pod container #!/usr/bin/env bash

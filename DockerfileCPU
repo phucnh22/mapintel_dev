@@ -1,0 +1,27 @@
+FROM python:3.7.4-stretch
+
+WORKDIR /home/user
+
+RUN apt-get update && apt-get install -y curl git pkg-config cmake wget
+
+# Install PDF converter
+RUN wget --no-check-certificate https://dl.xpdfreader.com/xpdf-tools-linux-4.03.tar.gz && \
+    tar -xvf xpdf-tools-linux-4.03.tar.gz && cp xpdf-tools-linux-4.03/bin64/pdftotext /usr/local/bin
+
+RUN apt-get install libpoppler-cpp-dev pkg-config -y --fix-missing
+
+# Install packages
+# Install pytorch with cpu support
+RUN pip3 install numpy scipy Cython
+RUN pip3 install torch==1.9.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+
+COPY ./api/requirements.txt /home/user/
+RUN pip install -r requirements.txt
+
+# Copy API code
+COPY ./api /home/user/api
+
+EXPOSE 8000
+
+# cmd for initializing the container
+CMD ["api/init_container.sh"]
