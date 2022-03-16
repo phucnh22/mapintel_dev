@@ -19,6 +19,14 @@ spec:
         io.kompose.network/odfe-net: "true"
         io.kompose.service: odfe-node1
     spec:
+      initContainers:
+        - name: permissions-fix
+          image: busybox
+          volumeMounts:
+            - name: odfe-data1
+              mountPath: /usr/share/elasticsearch/data
+          command: [ 'chown' ]
+          args: [ '1000:1000', '/usr/share/elasticsearch/data' ]
       containers:
         - env:
             - name: discovery.type
@@ -27,7 +35,6 @@ spec:
               value: odfe-node1
           image: amazon/opendistro-for-elasticsearch:1.13.2
           name: odfe-node1
-          command: ["sudo chown -R 1000:1000 /usr/share/elasticsearch/data"]
           ports:
             - containerPort: 9200
           resources: {}
