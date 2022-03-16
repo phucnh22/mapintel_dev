@@ -7,3 +7,5 @@ kubectl port-forward api-cpu-775445f8b6-w9zrq 8000:8000
 kubectl cp /artifacts/. my-pod:/data/artifacts
 ---
 minikube mount "C:\Users\Admin\Documents\1.myprojects\mapintel_test\artifacts":/data/artifacts
+---
+gcloud container clusters get-credentials mapintel-cluster-autopilot --region=europe-west1

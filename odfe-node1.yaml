@@ -36,8 +36,9 @@ spec:
       restartPolicy: Always
       volumes:
         - name: odfe-data1
-          persistentVolumeClaim:
-            claimName: odfe-data1
+          gcePersistentDisk:
+            pdName: odfe-data
+            fsType: ext4
 status: {}
 
 ---

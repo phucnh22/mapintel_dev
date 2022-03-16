@@ -20,7 +20,7 @@ spec:
         io.kompose.service: api-cpu
     spec:
       containers:
-        - image: phucnh22/mapintel-api-cpu
+        - image: gcr.io/mapintel-phuc/mapintel-api-cpu@sha256:3cbc2a8deff289ee59bc7158c2e370b25f99887a266b41c595f01760a02d30b9
           name: api-cpu
           ports:
             - containerPort: 8000
@@ -31,8 +31,9 @@ spec:
       restartPolicy: Always
       volumes:
         - name: api-cpu-data
-          persistentVolumeClaim:
-            claimName: api-cpu-data
+          gcePersistentDisk:
+            pdName: api-disk
+            fsType: ext4
 
 status: {}
 
