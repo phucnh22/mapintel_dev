@@ -20,7 +20,7 @@ spec:
         io.kompose.service: api-cpu
     spec:
       containers:
-        - image: gcr.io/mapintel-phuc/mapintel-api-cpu@sha256:3cbc2a8deff289ee59bc7158c2e370b25f99887a266b41c595f01760a02d30b9
+        - image: gcr.io/mapintel-phuc/mapintel-api@sha256:003e67302df1e03d9b0a9b56e5e9063fb2dead0bb91944d9fef720ffd26872dc
           name: api-cpu
           ports:
             - containerPort: 8000
