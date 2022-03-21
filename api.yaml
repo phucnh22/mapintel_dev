@@ -26,11 +26,11 @@ spec:
             - containerPort: 8000
           resources:
             requests:
-              memory: "6000Mi"
-              cpu: "2000m"
-            limits:
               memory: "8000Mi"
               cpu: "4000m"
+            limits:
+              memory: "10000Mi"
+              cpu: "4500m"
           volumeMounts:
             - mountPath: /home/user/artifacts
               name: api-cpu-data
