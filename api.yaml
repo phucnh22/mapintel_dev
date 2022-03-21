@@ -20,11 +20,17 @@ spec:
         io.kompose.service: api-cpu
     spec:
       containers:
-        - image: gcr.io/mapintel-phuc/mapintel-api@sha256:003e67302df1e03d9b0a9b56e5e9063fb2dead0bb91944d9fef720ffd26872dc
+        - image: phucnh22/mapintel-api-cpu:latest
           name: api-cpu
           ports:
             - containerPort: 8000
-          resources: {}
+          resources:
+            requests:
+              memory: "6000Mi"
+              cpu: "2000m"
+            limits:
+              memory: "8000Mi"
+              cpu: "4000m"
           volumeMounts:
             - mountPath: /home/user/artifacts
               name: api-cpu-data
