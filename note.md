@@ -20,10 +20,11 @@ git clone https://github.com/phucnh22/mapintel_dev.git
 gcloud auth configure-docker
 gcloud config set project mapintel-phuc
 gcloud config set compute/region europe-west1
+gcloud config set compute/zone europe-west1-b
 # build image
 docker build -f DockerfileCPU -t gcr.io/mapintel-phuc/mapintel-api .
 # get credentials for GKE cluster
-gcloud container clusters get-credentials mapintel-cluster-autopilot --region=europe-west1
+gcloud container clusters get-credentials mapintel-cluster-1 --zone=europe-west1-b
 # access to pod container #!/usr/bin/env bash
 kubectl exec -it <podname> -c api-cpu -- /bin/bash
 # copy data for first use, only use when first time load disk
@@ -31,6 +32,12 @@ kubectl cp artifacts/backups/mongodb_cleaned_docs.json <podname>:/home/user/arti
 kubectl cp artifacts/saved_models/bertopic.pkl <podname>:/home/user/artifacts/saved_models/
 
 ```
+Pull image from repository
+```bash
+echo <token> | docker login -u phucnh22 --password-stdin
+```
+
+
 ----
 New error:
 

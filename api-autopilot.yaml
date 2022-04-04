@@ -23,12 +23,6 @@ spec:
         - image: phucnh22/mapintel-api-cpu:latest
           name: api-cpu
           resources:
-            requests:
-              memory: "2000Mi"
-              cpu: "1500m"
-            limits:
-              memory: "8000Mi"
-              cpu: "2750m"
           ports:
             - containerPort: 8000
           volumeMounts:
