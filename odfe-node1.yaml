@@ -43,7 +43,7 @@ spec:
               cpu: "500m"
             limits:
               memory: "3000Mi"
-              cpu: "1500m"
+              cpu: "750m"
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
               name: odfe-data1
