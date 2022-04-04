@@ -42,7 +42,7 @@ spec:
               memory: "2000Mi"
               cpu: "250m"
             limits:
-              memory: "3000Mi"
+              memory: "2500Mi"
               cpu: "750m"
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
