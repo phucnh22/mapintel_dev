@@ -24,6 +24,8 @@ gcloud config set compute/zone europe-west1-b
 # build image
 docker build -f DockerfileCPU -t gcr.io/mapintel-phuc/mapintel-api .
 # get credentials for GKE cluster
+gcloud container clusters get-credentials mapintel-cluster-1 --region=europe-west1
+# for normal cluster
 gcloud container clusters get-credentials mapintel-cluster-1 --zone=europe-west1-b
 # access to pod container #!/usr/bin/env bash
 kubectl exec -it <podname> -c api-cpu -- /bin/bash

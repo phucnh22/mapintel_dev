@@ -37,7 +37,13 @@ spec:
           name: odfe-node1
           ports:
             - containerPort: 9200
-          resources: {}
+          resources:
+            requests:
+              memory: "2000Mi"
+              cpu: "500m"
+            limits:
+              memory: "3000Mi"
+              cpu: "1500m"
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
               name: odfe-data1
