@@ -39,11 +39,11 @@ spec:
             - containerPort: 9200
           resources:
             requests:
-              memory: "2000Mi"
-              cpu: "500m"
+              memory: "1500Mi"
+              cpu: "250m"
             limits:
               memory: "3000Mi"
-              cpu: "750m"
+              cpu: "500m"
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
               name: odfe-data1
