@@ -18,7 +18,7 @@ git clone https://github.com/phucnh22/mapintel_dev.git
 
 # config gcloud to specific zone and project
 gcloud auth configure-docker
-gcloud config set project mapintel-phuc
+gcloud config set project news-intel
 gcloud config set compute/region europe-west1
 gcloud config set compute/zone europe-west1-b
 # build image
@@ -27,12 +27,17 @@ docker build -f DockerfileCPU -t gcr.io/mapintel-phuc/mapintel-api .
 gcloud container clusters get-credentials mapintel-cluster-1 --region=europe-west1
 # for normal cluster
 gcloud container clusters get-credentials mapintel-cluster-1 --zone=europe-west1-b
+
 # access to pod container #!/usr/bin/env bash
 kubectl exec -it <podname> -c api-cpu -- /bin/bash
+
 # copy data for first use, only use when first time load disk
 kubectl cp artifacts/backups/mongodb_cleaned_docs.json <podname>:/home/user/artifacts/backups/
 kubectl cp artifacts/saved_models/bertopic.pkl <podname>:/home/user/artifacts/saved_models/
 
+
+# Resize clusters
+gcloud container clusters resize news-intel --num-nodes=0
 ```
 Pull image from repository
 ```bash
@@ -41,11 +46,3 @@ echo <token> | docker login -u phucnh22 --password-stdin
 
 
 ----
-New error:
-
-`ElasticsearchException[failed to bind service] kubernetes`
-
-Lastest error
-
-`Error
-2022-03-16T11:46:50.469413374Z03/16/2022 11:46:50 - INFO - api.custom_components.custom_nodes - The BERTopic model hasn't been successfuly loaded: [Errno 2] No such file or directory: '/home/user/api/custom_components/../../outputs/saved_models/bertopic.pkl'`
