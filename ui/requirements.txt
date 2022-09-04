@@ -11,6 +11,3 @@ umap-learn
 streamlit==0.82.0
 plotly
 colorcet
-
-# Read different file formats
-tika

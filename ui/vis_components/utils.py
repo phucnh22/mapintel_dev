@@ -1,8 +1,8 @@
-import numpy as np
-from matplotlib.colors import rgb2hex, Normalize
-from matplotlib.cm import ScalarMappable
-from sklearn.preprocessing import LabelEncoder
 import colorcet as cc  # use glasbey_light colormap for dark background and categorical values
+import numpy as np
+from matplotlib.cm import ScalarMappable
+from matplotlib.colors import Normalize, rgb2hex
+from sklearn.preprocessing import LabelEncoder
 
 
 def val_to_color(col, cmap=cc.cm.glasbey_light):
